@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台</title>
+    <link rel="stylesheet" href="/static/admin/css/style.css">
+</head>
+<body>
+<div class="wrap wrap-category-edit">
+    <h1>栏目管理</h1>
+    <div class="tips"></div>
+    <div class="box">
+        <div class="box-title">修改信息</div>
+        <div class="box-body">
+            <form method="post" action="{:url('CategoryEdit/create_category')}">
+                <table>
+                    <tr><th width="80">栏目名称：</th><td><input type="text" name="name" ></td></tr>
+
+                    <tr><th>显示顺序：</th><td><input type="text"  name="sort" ></td></tr>
+                    <tr class="s-act"><th></th><td><input type="submit" value="添加"></td></tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

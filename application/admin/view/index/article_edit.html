@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>后台</title>
+    <link rel="stylesheet" href="/static/admin/css/dashicons.css">
+    <link rel="stylesheet" href="/static/admin/css/style.css">
+    <script src="/static/admin/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap wrap-article">
+    <h1>文章发布</h1>
+    <div class="s-nav">
+        <div>
+            <form method="post" action="{:url('Index/article_edit')}">
+            <select name="status">
+                <option value="待发布">待发布</option>
+                <option value="已发布" >已发布</option>
+                <option value="全部"  >全部</option>
+            </select>
+            <input type="submit" value="筛选">
+        </form></div>
+
+
+    </div>
+    <div class="tips"></div>
+    <div class="box">
+        <div class="box-body">
+            <table>
+                <tr>
+                    <th width="80">状态</th>
+                    <th>文章标题</th>
+                    <th width="120">所属栏目</th>
+                    <th width="100">作者</th>
+                    <th width="150">创建时间</th>
+                    <th width="200">操作</th>
+                </tr>
+                {foreach $articles as $article}
+                <tr>
+                    <td >{$article.status}</td>
+                    <td >{$article.a_title}</td>
+                    <td>{$article.a_col}</td>
+                    <td>{$article.a_author}</td>
+                    <td>{$article.update_date}</td>
+                    <td class="s-act">
+                        <a href={:url('ArticleEdit/con_status',['id' => $article.id])}>确认发布</a>
+                        <a href={:url('ArticleEdit/can_status',['id' => $article.id])}>取消发布</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+        </div>
+    </div>
+    <div class="pagelist"><span>首页</span><span>上一页</span><a href="?page=1" class="curr">1</a><a href="?page=2">2</a><a href="?page=2">下一页</a><a href="?page=2">尾页</a></div>
+</div>
+
+</body>
+</html>

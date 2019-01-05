@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>后台</title>
+    <link rel="stylesheet" href="/static/admin/css/dashicons.css">
+    <link rel="stylesheet" href="/static/admin/css/style.css">
+    <script src="/static/admin/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap wrap-article">
+    <h1>文章管理</h1>
+    <div class="s-nav">
+        <div>
+            <form method="post" action="{:url('Index/cp_article')}" >
+            <select name="a_col">
+                <option value="所有栏目" {compare name="a_col" value="所有栏目" type="eq"}selected{/compare}>所有栏目</option>
+                <option value="生活" {compare name="a_col" value="生活" type="eq"}selected{/compare}>生活</option>
+                <option value="资讯" {compare name="a_col" value="资讯" type="eq"}selected{/compare}>资讯</option>
+                <option value="编程" {compare name="a_col" value="编程" type="eq"}selected{/compare}>编程</option>
+                <option value="互联网" {compare name="a_col" value="互联网" type="eq"}selected{/compare}>互联网</option>
+            </select>
+            <input type="submit" value="筛选">
+        </form>
+        </div>
+        <div>
+<!--        <form>
+            <select name="order">
+                <option value="time-asc"  >时间降序</option>
+                <option value="time-desc"  >时间升序</option>
+                <option value="show-desc"  >发布状态</option>
+            </select>
+            <input type="submit" value="排序">
+        </form>
+        </div>-->
+        <div>
+        <form method="post" action="{:url('Index/search_article')}" >
+            <input type="text" name="search" value="" placeholder="输入关键字">
+            <input type="submit" value="搜索文章">
+        </form>
+        </div>
+    </div>
+    <div class="tips"></div>
+    <div class="box">
+        <div class="box-body">
+            <table>
+                <tr><th width="80">状态</th><th>文章标题</th><th width="120">所属栏目</th><th width="100">作者</th><th width="150">创建时间</th><th width="100">操作</th></tr>
+                {foreach $articles as $article}
+                <tr>
+                    <td >{$article.status}</td>
+                    <td >{$article.a_title}</td>
+                    <td>{$article.a_col}</td>
+                    <td>{$article.a_author}</td>
+                    <td>{$article.update_date}</td>
+                    <td class="s-act">
+                        <a href={:url('ArticleEdit/cp_article_edit',['id' => $article.id])}>编辑</a>
+                        <a href={:url('ArticleEdit/del_article',['id' => $article.id])}>删除</a>
+                    </td>
+                </tr>
+                {/foreach}
+
+
+
+            </table>
+            <td class="s-act">
+                <a href={:url('ArticleEdit/cp_article_edit_2')}>添加文章</a></td>
+
+        </div>
+    </div>
+    <div class="pagelist"><span>首页</span><span>上一页</span><a href="?page=1" class="curr">1</a><a href="?page=2">2</a><a href="?page=2">下一页</a><a href="?page=2">尾页</a></div>
+</div>
+
+</body>
+</html>
